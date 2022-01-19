@@ -1,5 +1,5 @@
 require 'time'
-require 'byebug'
+#require 'byebug'
 
 class Note
   attr_accessor :absolute_file_path
@@ -72,7 +72,7 @@ class Note
 
       Before
       #{before}
-      
+
       After
       #{after}\n
     EOS
@@ -134,7 +134,7 @@ class Note
 
   def self.all
     notes = Dir[File.join(ENV["ZK_PATH"], "/*.md")].select { |file|
-      file =~ /#{Regexp.escape(ENV["ZK_PATH"])}\/\d+ /
+      file =~ /#{Regexp.escape(ENV["ZK_PATH"])}\/\S+/
     }.map { |file| Note.from_absolute_path(file) }
 
     # todo: raise on conflicts

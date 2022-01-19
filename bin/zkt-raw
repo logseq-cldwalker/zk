@@ -3,4 +3,5 @@
 rg -oP "(?<=^|\s)#[\w\-_]{3,}" -t md -N --no-filename "$ZK_PATH" --glob '!scripts' |
   rg -v "^#(notes-|import-)" | \
   awk ' { tot[$0]++ } END { for (i in tot) print tot[i], "\t", i } ' | \
-  gsort -r --numeric-sort
+  # use sort instead of gsort for osx
+  sort -r -n
